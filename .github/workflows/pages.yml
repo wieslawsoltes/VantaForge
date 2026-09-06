@@ -1,0 +1,104 @@
+name: Test, build, and deploy Vanta Forge
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write # One-time, checksum-verified source import; reduced after bootstrap.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Detect source import
+        id: bootstrap
+        run: |
+          if test -f .bootstrap/restore.mjs; then
+            echo 'needed=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'needed=false' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Restore checksum-verified source snapshot
+        if: steps.bootstrap.outputs.needed == 'true'
+        run: node .bootstrap/restore.mjs
+      - name: Run core engine tests
+        run: npm test | tee docs/core-test-output.txt
+      - name: Build portable editor and runtime
+        run: npm run build
+      - name: Install browser test tools
+        if: steps.bootstrap.outputs.needed == 'true'
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Verify editor workflows and generate standalone game
+        if: steps.bootstrap.outputs.needed == 'true'
+        run: python tests/browser_smoke.py --software
+      - name: Refresh distribution checksums
+        if: steps.bootstrap.outputs.needed == 'true'
+        shell: python
+        run: |
+          import json, hashlib
+          from pathlib import Path
+          root = Path('.')
+          manifest_path = root / 'docs/build-manifest.json'
+          manifest = json.loads(manifest_path.read_text())
+          manifest['files'] = {}
+          for file in sorted(root.rglob('*')):
+              if not file.is_file() or file == manifest_path:
+                  continue
+              if any(part in {'.git', '.github', '.bootstrap', '__pycache__', '_site', 'node_modules'} for part in file.parts):
+                  continue
+              data = file.read_bytes()
+              manifest['files'][file.as_posix()] = {'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
+          manifest_path.write_text(json.dumps(manifest, indent=2) + '\n')
+      - name: Commit complete expanded source and tested builds
+        if: steps.bootstrap.outputs.needed == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Import complete Vanta Forge engine, editor, gameplay, tests, and portable builds'
+          git push origin HEAD:main
+      - name: Stage GitHub Pages application
+        run: node tools/site.mjs
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Retain validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-evidence
+          path: |
+            docs/browser-test-results.json
+            docs/core-test-output.txt
+            docs/test-artifacts/
+          if-no-files-found: warn
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
