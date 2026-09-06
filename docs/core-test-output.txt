@@ -1,0 +1,158 @@
+
+> vanta-forge@1.0.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: TRS inverse round trip and multiplication identity
+ok 1 - TRS inverse round trip and multiplication identity
+  ---
+  duration_ms: 2.974545
+  type: 'test'
+  ...
+# Subtest: WebGPU [0,1] near/far projection
+ok 2 - WebGPU [0,1] near/far projection
+  ---
+  duration_ms: 0.291551
+  type: 'test'
+  ...
+# Subtest: Frustum rejects behind camera and retains origin
+ok 3 - Frustum rejects behind camera and retains origin
+  ---
+  duration_ms: 0.46602
+  type: 'test'
+  ...
+# Subtest: Ray/box parallel, miss and hit cases
+ok 4 - Ray/box parallel, miss and hit cases
+  ---
+  duration_ms: 0.259815
+  type: 'test'
+  ...
+# Subtest: Triangle BVH gives exact cube hit
+ok 5 - Triangle BVH gives exact cube hit
+  ---
+  duration_ms: 1.265424
+  type: 'test'
+  ...
+# Subtest: Demo validates, serializes and preserves stable entity IDs
+ok 6 - Demo validates, serializes and preserves stable entity IDs
+  ---
+  duration_ms: 39.553623
+  type: 'test'
+  ...
+# Subtest: Hierarchy computes parent transform and clones subtree with remapped IDs
+ok 7 - Hierarchy computes parent transform and clones subtree with remapped IDs
+  ---
+  duration_ms: 3.759137
+  type: 'test'
+  ...
+# Subtest: Schema rejects duplicate IDs, cycles and corrupt meshes
+ok 8 - Schema rejects duplicate IDs, cycles and corrupt meshes
+  ---
+  duration_ms: 5.636778
+  type: 'test'
+  ...
+# Subtest: Undo/redo branches discard redo history
+ok 9 - Undo/redo branches discard redo history
+  ---
+  duration_ms: 0.417018
+  type: 'test'
+  ...
+# Subtest: OBJ negative indices and polygon fan triangulation reconstruct normals
+ok 10 - OBJ negative indices and polygon fan triangulation reconstruct normals
+  ---
+  duration_ms: 0.802098
+  type: 'test'
+  ...
+# Subtest: Heightfield generation is seeded; sculpt changes sampled height and cache version
+ok 11 - Heightfield generation is seeded; sculpt changes sampled height and cache version
+  ---
+  duration_ms: 1.688991
+  type: 'test'
+  ...
+# Subtest: Graph validates typed edges and rejects cycles
+ok 12 - Graph validates typed edges and rejects cycles
+  ---
+  duration_ms: 0.358621
+  type: 'test'
+  ...
+# Subtest: Graph actually runs overlap → score → destruction
+ok 13 - Graph actually runs overlap → score → destruction
+  ---
+  duration_ms: 0.447523
+  type: 'test'
+  ...
+# Subtest: Typed data wires and branch execute the selected output only
+ok 14 - Typed data wires and branch execute the selected output only
+  ---
+  duration_ms: 0.25
+  type: 'test'
+  ...
+# Subtest: Sphere contacts and broadphase deduplicate pairs
+ok 15 - Sphere contacts and broadphase deduplicate pairs
+  ---
+  duration_ms: 0.480171
+  type: 'test'
+  ...
+# Subtest: Runtime is isolated from editor and produces fixed-step deterministic state
+ok 16 - Runtime is isolated from editor and produces fixed-step deterministic state
+  ---
+  duration_ms: 107.778885
+  type: 'test'
+  ...
+# Subtest: Gravity settles dynamic crate on solid platform
+ok 17 - Gravity settles dynamic crate on solid platform
+  ---
+  duration_ms: 79.849943
+  type: 'test'
+  ...
+# Subtest: Real trigger overlap awards exactly one collectible and removes it
+ok 18 - Real trigger overlap awards exactly one collectible and removes it
+  ---
+  duration_ms: 6.124511
+  type: 'test'
+  ...
+# Subtest: All six collectible graphs execute and produce win message
+ok 19 - All six collectible graphs execute and produce win message
+  ---
+  duration_ms: 5.888761
+  type: 'test'
+  ...
+# Subtest: Animation keyframes are evaluated and single-step increments one tick
+ok 20 - Animation keyframes are evaluated and single-step increments one tick
+  ---
+  duration_ms: 6.704969
+  type: 'test'
+  ...
+# Subtest: Fixed accumulator bounds catchup and records dropped time
+ok 21 - Fixed accumulator bounds catchup and records dropped time
+  ---
+  duration_ms: 8.106636
+  type: 'test'
+  ...
+# Subtest: Look-at remains invertible for a vertical camera or directional light
+ok 22 - Look-at remains invertible for a vertical camera or directional light
+  ---
+  duration_ms: 0.306915
+  type: 'test'
+  ...
+# Subtest: Animated prefab translation rebases absolute position keys without changing rotation keys
+ok 23 - Animated prefab translation rebases absolute position keys without changing rotation keys
+  ---
+  duration_ms: 0.388005
+  type: 'test'
+  ...
+# Subtest: Scene validation rejects moved terrain, missing graph references and invalid animation keys
+ok 24 - Scene validation rejects moved terrain, missing graph references and invalid animation keys
+  ---
+  duration_ms: 6.535018
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 467.006661

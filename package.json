@@ -1,0 +1,6 @@
+{
+  "name": "vanta-forge", "version": "1.0.0", "private": true,
+  "type": "module", "description": "Dependency-free WebGPU scene editor and executable game runtime",
+  "scripts": {"build": "node tools/build.mjs", "test": "node --test tests/*.test.mjs", "start": "node tools/serve.mjs"},
+  "license": "MIT"
+}

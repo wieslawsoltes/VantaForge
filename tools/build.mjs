@@ -1,0 +1,17 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const runtimeModules=['math','scene','assets','graph','physics','renderer','runtime'];
+const editorModules=[...runtimeModules,'demo','editor-ui','editor'];
+const bundle=async names=>'(function(){\n"use strict";\n'+(await Promise.all(names.map(async name=>`\n// ===== src/${name}.js =====\n`+(await fs.readFile(path.join(root,'src',name+'.js'),'utf8')).replace(/^import\s+.*?;\s*$/gm,'').replace(/^export\s+/gm,'')))).join('\n');
+const runtime=await bundle(runtimeModules)+'\nwindow.VantaRuntime={launchStandalone,GameRuntime,Scene,Assets,Camera,InputState,Renderer};\n})();\n';
+const editor=await bundle(editorModules)+'\n})();\n';
+await fs.writeFile(path.join(root,'runtime.bundle.js'),runtime);
+await fs.writeFile(path.join(root,'editor.bundle.js'),editor);
+const css=await fs.readFile(path.join(root,'styles.css'),'utf8');
+let html=await fs.readFile(path.join(root,'index.html'),'utf8');
+const safe=s=>s.replace(/<\/script/gi,'<\\/script');
+html=html.replace('<link rel="stylesheet" href="styles.css">',`<style id="vanta-inline-style">${css}</style>`).replace('<script type="module" src="src/editor.js"></script>',`<script id="vanta-runtime-source" type="text/plain">${safe(runtime)}</script><script>${safe(editor)}</script>`);
+await fs.writeFile(path.join(root,'vanta-forge.html'),html);
+console.log(`Built dependency-free runtime (${(runtime.length/1024).toFixed(1)} KB), editor (${(editor.length/1024).toFixed(1)} KB), and portable HTML (${(html.length/1024).toFixed(1)} KB).`);

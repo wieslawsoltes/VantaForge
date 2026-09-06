@@ -1,0 +1,165 @@
+{
+  "backend": "WebGL2 fallback",
+  "harness": "Portable HTML injected into about:blank",
+  "nativeWebGPU": false,
+  "indexedDB": "Not covered by this suite; about:blank has an opaque origin",
+  "tests": [
+    {
+      "test": "Browser initializes a real graphics renderer",
+      "passed": true,
+      "detail": "WebGL2 fallback"
+    },
+    {
+      "test": "Actor palette creates an actual scene entity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Property inspector changes transform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Undo restores prior transform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Redo reapplies transform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Viewport gizmo pointer drag modifies geometry transform",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Visual graph creates an executable typed node",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Graph node parameter editor writes the graph asset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Clicking a wire disconnects it",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Typed port interaction reconnects executable graph",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Graph compilation validates edited graph",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Play button creates separate runtime",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Real keyboard input moves the physics-controlled player",
+      "passed": true,
+      "detail": {
+        "distance": 5.078
+      }
+    },
+    {
+      "test": "Single-step advances exactly one deterministic tick",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Game physics triggers run score and destroy graph actions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Runtime HUD reflects executable gameplay results",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Stopping Play restores unmodified authoring scene",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Create prefab stores reusable entity payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Prefab instantiation adds a new entity with stable new ID",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "OBJ import executes in asset worker and registers geometry",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Terrain editing updates stored heightfield",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Terrain edit is undoable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Actual viewport brush stroke modifies landscape heights",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "A complete pointer-driven landscape stroke undoes atomically",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Export returns a self-contained HTML runtime",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Exported game starts independently without editor code",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Exported game uses real graphics backend",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Exported game executes the same collectible logic",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Standalone touch controls appear on a narrow coarse-pointer viewport",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "On-screen movement button drives the actual player controller",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No uncaught JavaScript exceptions during browser workflow",
+      "passed": true,
+      "detail": []
+    }
+  ]
+}

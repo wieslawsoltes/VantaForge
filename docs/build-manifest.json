@@ -1,0 +1,140 @@
+{
+  "product": "Vanta Forge",
+  "version": "1.0.0",
+  "date": "2026-09-06",
+  "coreTestsPassed": 24,
+  "browserChecksPassed": 31,
+  "testedRenderer": "WebGL2 / Chromium SwiftShader",
+  "nativeWebGPUExecutionVerified": false,
+  "indexedDBPersistenceVerified": false,
+  "files": {
+    ".gitignore": {
+      "bytes": 50,
+      "sha256": "6335dc26d36ca1dfd7bcfe36bcd784d2dd7614a771c5f09746ca31fcc31c6e24"
+    },
+    "LICENSE": {
+      "bytes": 1081,
+      "sha256": "4ea2ae1716946b3d0d68318fc828e67866604b0b18684086f61ed8104c93bbd5"
+    },
+    "README.md": {
+      "bytes": 13527,
+      "sha256": "f2e4e2b765faf1f14beba54742d3e113488511dd48604d802e0cba5c04d7dab2"
+    },
+    "aether-relay-game.html": {
+      "bytes": 246447,
+      "sha256": "e56336fdbb6cb356c8478ff24bef737c9dd0505f6bc07aba9204777194f3ae89"
+    },
+    "docs/ARCHITECTURE.md": {
+      "bytes": 14315,
+      "sha256": "e18f95bddd95eec60f592c43b169472acb323735b3318028f19cc4c99414f617"
+    },
+    "docs/VALIDATION.md": {
+      "bytes": 5432,
+      "sha256": "ca8739b8e1510d9a11112963bb49f23a69b3214efe34e75ed5da697b1c618f26"
+    },
+    "docs/browser-test-results.json": {
+      "bytes": 4002,
+      "sha256": "b156530832ca81c8d5c841c99f5040248389319ad7f78120bda7aa4f9da0c75a"
+    },
+    "docs/core-test-output.txt": {
+      "bytes": 4702,
+      "sha256": "b6a8fe5a8d0549651ebb23d1573d603880d532871241a46e43e481fbd0cd93fe"
+    },
+    "docs/test-artifacts/editor.png": {
+      "bytes": 381367,
+      "sha256": "5fbe143d53c5f85896ce91b9a5f6d89e0ab012c0a2614cd9ea6c950e0d3fb24a"
+    },
+    "docs/test-artifacts/graph.png": {
+      "bytes": 289095,
+      "sha256": "8a9b2095219a8ebb52a4abc515f2b427f1e493a5b02275c28f1d959c5bf716ce"
+    },
+    "docs/test-artifacts/play.png": {
+      "bytes": 374662,
+      "sha256": "0ce9d364b75d082fa9c5e5e7a275ec20c6939960338e0240e250fdecfdd4b8df"
+    },
+    "editor.bundle.js": {
+      "bytes": 140226,
+      "sha256": "3316787d1db4764a642f6a4e49de8b78dfa703dd94806cb57a8b41985866df91"
+    },
+    "index.html": {
+      "bytes": 11521,
+      "sha256": "b75534aca702ae493773ef585a9222697bbd1c7fcf23524678411f8c594ebe8a"
+    },
+    "package.json": {
+      "bytes": 308,
+      "sha256": "eaff5bd1d5b108e6cc9da70b8a775db89bf33c5d629eccd79bb323384bd526ce"
+    },
+    "runtime.bundle.js": {
+      "bytes": 67739,
+      "sha256": "7bff7f445e2a5acdd64e840f8e7971983d67d2bede40fccd5b97b9a5d9992e26"
+    },
+    "src/assets.js": {
+      "bytes": 9175,
+      "sha256": "7d3278fe77ca915b73626003f5770fa4c6c622fe5ebb57128793019effc95e82"
+    },
+    "src/demo.js": {
+      "bytes": 6550,
+      "sha256": "e0059d03bba966c4e4176dbf3b6ecde5c10d245a8cc5de1ade8591f927ea0bc8"
+    },
+    "src/editor-ui.js": {
+      "bytes": 23317,
+      "sha256": "5269459286427a44e850dcfe6b5128c4152b84466231dcaa650497910f3477c3"
+    },
+    "src/editor.js": {
+      "bytes": 43630,
+      "sha256": "1d42a5067713faca33eb2334c1dda2b5ae01fc3313ba9fa50632258547f77d6c"
+    },
+    "src/graph.js": {
+      "bytes": 6202,
+      "sha256": "e5cf5c3bc1b545703a396a856868b8bc6c134227615b5e19260050d0b9d46909"
+    },
+    "src/math.js": {
+      "bytes": 4695,
+      "sha256": "6faf4e0f9281a4c1d9206c8bb6d65ee79ed95af0de9c199360bf9d1774c1f3b8"
+    },
+    "src/physics.js": {
+      "bytes": 5577,
+      "sha256": "34a7fbf18ca4bb9089fc0bb9c899d587bd9e74362981ea701a932c1e9b1cd988"
+    },
+    "src/renderer.js": {
+      "bytes": 25764,
+      "sha256": "0b75cd64c5ea2642723f46e79c6fbc41fbdc104a8d7c9a7035af2e2eac9d924f"
+    },
+    "src/runtime.js": {
+      "bytes": 7882,
+      "sha256": "8a2aeebb8ea8bb5e9cebf3a0b19f2018f326e1816c6e152a86a79c50d512dbb7"
+    },
+    "src/scene.js": {
+      "bytes": 9328,
+      "sha256": "90c85e3fce5d27b576b4e98151e5d4011466efee0a67637ce8910ebab320d365"
+    },
+    "styles.css": {
+      "bytes": 30056,
+      "sha256": "82311e22cf8cbe482f32592bf1a2220a5b09c768055ddb34c19f284d37467470"
+    },
+    "tests/browser_smoke.py": {
+      "bytes": 12439,
+      "sha256": "852c396e00b25183f0b5d173310a01f621fdb1feb693e52f0e7a532e6fee063a"
+    },
+    "tests/core.test.mjs": {
+      "bytes": 8934,
+      "sha256": "123a344212533e63f01481eb9dc8f739f29b8aae9d2e986c6cf1fa60effa057c"
+    },
+    "tools/build.mjs": {
+      "bytes": 1666,
+      "sha256": "909f45f535343771fc34a16ae0c22a6144a805566697c0a6af96f6bb061a2f09"
+    },
+    "tools/serve.mjs": {
+      "bytes": 1351,
+      "sha256": "4e3e05d81fef87279db9865ffad8629270ee73addec72b696063dfe09d5d7a7a"
+    },
+    "tools/site.mjs": {
+      "bytes": 1233,
+      "sha256": "4709c795de8c93f06aab8f8ed6657d54bef821d91234a53c9f4c9add36348b84"
+    },
+    "vanta-forge.html": {
+      "bytes": 249570,
+      "sha256": "7b73dcd8fb6e0c84267d6e0bc4e5bf8ffd356e3b8b5d5f17803ccb1e5c50f3c6"
+    }
+  }
+}
