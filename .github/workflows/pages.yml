@@ -65,6 +65,7 @@ jobs:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       pages: write
       id-token: write
@@ -75,3 +76,43 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify live editor, game, assets, and commit
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+          EXPECTED_COMMIT: ${{ github.sha }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { setTimeout as delay } from 'node:timers/promises';
+          const base = new URL(process.env.SITE_URL);
+          const expected = process.env.EXPECTED_COMMIT;
+          async function read(name) {
+            const url = new URL(name, base);
+            url.searchParams.set('deploy', expected);
+            const response = await fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(20000) });
+            assert.equal(response.status, 200, `${name}: HTTP ${response.status}`);
+            return response.text();
+          }
+          for (let attempt = 1; ; attempt++) {
+            try {
+              const version = JSON.parse(await read('version.json'));
+              assert.equal(version.product, 'Vanta Forge');
+              assert.equal(version.commit, expected, 'CDN must serve the deployed commit');
+              const [editor, game, portable, module, css, runtime] = await Promise.all(
+                ['', 'aether-relay-game.html', 'vanta-forge.html', 'src/editor.js', 'styles.css', 'runtime.bundle.js'].map(read)
+              );
+              assert.match(editor, /src="src\/editor\.js"/);
+              assert.match(editor, /Vanta Forge/);
+              assert.match(game, /VantaRuntime\.launchStandalone/);
+              assert.match(game, /scene-data/);
+              assert.match(portable, /vanta-runtime-source/);
+              assert.ok(module.length > 1000 && css.length > 1000 && runtime.length > 1000);
+              console.log(`LIVE VERIFIED ${base.href} commit=${version.commit}; editor, portable editor, standalone game, and assets return HTTP 200.`);
+              break;
+            } catch (error) {
+              if (attempt >= 12) throw error;
+              console.log(`Waiting for Pages CDN propagation (${attempt}/12): ${error.message}`);
+              await delay(5000);
+            }
+          }
+          JS
